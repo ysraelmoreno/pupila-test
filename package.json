@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "brand-zone",
   "private": true,
   "scripts": {
     "build": "turbo run build",
