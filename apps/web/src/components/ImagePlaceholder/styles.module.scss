@@ -1,0 +1,13 @@
+.imagePlaceholder {
+  background-color: rgb(231, 231, 231);
+  width: 100%;
+  min-height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 80px;
+    height: 40px;
+  }
+}

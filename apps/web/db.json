@@ -1,0 +1,10 @@
+{
+  "visualReferences": [
+    {
+      "name": "Teste 1",
+      "description": "Lorem ipsum Dolor sit amet",
+      "tags": ["teste", "teste 2", "teste 3"],
+      "url": "https://images.unsplash.com/photo-1721241844238-bf5b0f099bbd?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4fHx8ZW58MHx8fHx8"
+    }
+  ]
+}

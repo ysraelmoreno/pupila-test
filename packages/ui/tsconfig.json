@@ -3,6 +3,10 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "../../apps/web/src/components/modal",
+    "../../apps/web/src/components/Portal"
+  ],
   "exclude": ["node_modules", "dist"]
 }

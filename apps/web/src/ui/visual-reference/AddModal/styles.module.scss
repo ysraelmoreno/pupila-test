@@ -1,0 +1,50 @@
+.card {
+  max-width: 540px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+
+  input {
+    width: 100%;
+  }
+}
+
+.nameAndGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tagsContainer {
+  display: flex;
+  align-items: center;
+
+  div + div {
+    margin-left: 10px;
+  }
+}
+
+.removeTagButton {
+  width: fit-content;
+  height: fit-content !important;
+  padding: 0 !important;
+
+  &:hover {
+    background-color: var(--foreground) !important;
+  }
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttonContainers {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
