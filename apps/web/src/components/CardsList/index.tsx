@@ -19,9 +19,10 @@ export const CardsList = ({
   children,
   groups,
   onDeleteGroup,
+  ...props
 }: PropsWithChildren<CardsListProps>) => {
   return (
-    <div className={styles.screen}>
+    <div className={styles.screen} {...props}>
       <Tabs.Root defaultValue="all">
         <Tabs.List className={styles.tabsList}>
           {groups.length > 0 && <Tabs.Trigger value="all">All</Tabs.Trigger>}

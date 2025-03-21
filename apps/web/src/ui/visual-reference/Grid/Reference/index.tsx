@@ -28,7 +28,7 @@ export const Reference = ({
   const { deleteReference, updateReference } = useVisualReferences();
 
   return (
-    <VisualCard.Root>
+    <VisualCard.Root {...props}>
       <VisualCard.Head>
       <div className={styles.imageContainer}>
         <img src={url} />

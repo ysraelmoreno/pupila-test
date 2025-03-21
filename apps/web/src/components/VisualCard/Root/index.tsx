@@ -1,10 +1,12 @@
 import { Card } from "@brand-zone/ui"
-import { PropsWithChildren } from "react"
+import { AllHTMLAttributes, PropsWithChildren } from "react"
 import styles from "./styles.module.scss";
 
-export const Root = ({ children }: PropsWithChildren) => {
+export interface RootProps extends AllHTMLAttributes<HTMLDivElement> {}
+
+export const Root = ({ children, ...props }: PropsWithChildren<RootProps>) => {
     return (
-        <Card className={styles.card}>
+        <Card className={styles.card} {...props}>
             {children}
         </Card>     
     )

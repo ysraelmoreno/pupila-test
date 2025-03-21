@@ -28,7 +28,7 @@ export interface IVisualReferenceContext {
   deleteGroup: (id: string) => void;
 }
 
-const VisualReferenceContext = createContext<IVisualReferenceContext>(
+export const VisualReferenceContext = createContext<IVisualReferenceContext>(
   {} as IVisualReferenceContext
 );
 

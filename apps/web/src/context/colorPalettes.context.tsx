@@ -28,7 +28,7 @@ export interface ColorPalettesContextProps {
   deleteColorPalette: (id: number) => void;
 }
 
-const ColorPalettesContext = createContext<ColorPalettesContextProps>(
+export const ColorPalettesContext = createContext<ColorPalettesContextProps>(
   {} as ColorPalettesContextProps
 );
 

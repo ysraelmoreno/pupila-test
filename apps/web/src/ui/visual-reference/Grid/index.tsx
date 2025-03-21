@@ -7,7 +7,7 @@ export const VisualReferenceGrid = () => {
   const { references, groups, deleteGroup } = useVisualReferences();
 
   return (
-    <CardsList groups={groups} onDeleteGroup={deleteGroup}>
+    <CardsList groups={groups} data-testid="visual-reference-grid" onDeleteGroup={deleteGroup}>
       <VisualReferencesList groups={groups} references={references} />
       {...groups?.map((group, i) => (
         <VisualReferencesList

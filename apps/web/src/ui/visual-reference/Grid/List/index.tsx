@@ -18,7 +18,7 @@ export const VisualReferencesList = ({
   return (
     <div className={styles.cardContainer}>
       {references?.map((reference) => (
-        <Reference key={`${reference.id}`} {...reference} groups={groups} />
+        <Reference key={`${reference.id}`} data-testid={`reference-${reference.id}`} {...reference} groups={groups} />
       ))}
     </div>
   );
