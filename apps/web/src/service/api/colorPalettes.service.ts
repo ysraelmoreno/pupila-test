@@ -28,6 +28,16 @@ class ColorPalettesService {
     return palettes;
   }
 
+  deletePalette(id: number) {
+    const palettes = this.getPalettes();
+
+    const filteredPalettes = palettes.filter((palette) => palette.id !== id);
+
+    localStorageService.add("colorPalettes", filteredPalettes);
+
+    return filteredPalettes;
+  }
+
   createPalette(palette: ColorPalette) {
     const palettes = this.getPalettes();
 

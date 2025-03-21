@@ -12,8 +12,8 @@ export const VisualReferenceScreen = () => {
       <div className={styled.screen}>
         <ToolsProvider>
           <VisualReferenceHeader />
+          <VisualReferenceGrid />
         </ToolsProvider>
-        <VisualReferenceGrid />
       </div>
     </VisualReferenceProvider>
   );

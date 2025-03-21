@@ -25,6 +25,7 @@ export interface ColorPalettesContextProps {
   currentFilters: CurrentFilters;
   setCurrentFilters: (filters: CurrentFilters) => void;
   deleteGroup: (id: string) => void;
+  deleteColorPalette: (id: number) => void;
 }
 
 const ColorPalettesContext = createContext<ColorPalettesContextProps>(
@@ -56,6 +57,13 @@ export const ColorPalettesProvider = ({ children }: PropsWithChildren) => {
     const editedPalette = colorPalettesService.editPalette(newPalette);
 
     setPalettes([...editedPalette]);
+  };
+
+
+  const deleteColorPalette = (id: number) => {
+    const filteredPalettes = colorPalettesService.deletePalette(id);
+
+    setPalettes(filteredPalettes);
   };
 
   const createGroup = (group: string) => {
@@ -132,6 +140,7 @@ export const ColorPalettesProvider = ({ children }: PropsWithChildren) => {
         currentFilters,
         setCurrentFilters,
         deleteGroup,
+        deleteColorPalette,
       }}
     >
       {children}

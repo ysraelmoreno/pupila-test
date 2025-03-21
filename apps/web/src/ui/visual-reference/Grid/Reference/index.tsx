@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { useVisualReferences } from "../../../../context/visualReference.context";
 import AddModal from "../../AddModal";
 import { ToolsProvider } from "../../../../context/tools.context";
+import * as VisualCard from "../../../../components/VisualCard";
 
 export interface ReferenceProps extends VisualReference {
   onDelete?: (id: string) => void;
@@ -27,7 +28,8 @@ export const Reference = ({
   const { deleteReference, updateReference } = useVisualReferences();
 
   return (
-    <Card className={styles.card} {...props}>
+    <VisualCard.Root>
+      <VisualCard.Head>
       <div className={styles.imageContainer}>
         <img src={url} />
         <div className={styles.editContainer}>
@@ -48,26 +50,13 @@ export const Reference = ({
           </ToolsProvider>
         </div>
       </div>
-      <div className={styles.nameAction}>
-        <h3>{name}</h3>
-        <Button
-          variant="ghost"
-          onClick={() => {
-            deleteReference(Number(id));
-          }}
-        >
-          <TrashIcon />
-        </Button>
-      </div>
-      <p>{description}</p>
+      </VisualCard.Head>
+      <VisualCard.Content name={name} onDelete={() => deleteReference(Number(id))} />
+      <VisualCard.Subtitle>{description}</VisualCard.Subtitle>
       <div className={styles.tags}>
-        {tags
-          ?.slice(0, 3)
-          .map((tag) => (
-            <Tag key={`tag-${tag}-${Math.random() * 1000}`}>{tag}</Tag>
-          ))}
+        <VisualCard.Tags tags={tags?.slice(0, 3)} />
         {tags.length > 3 && <span>+ {tags.length - 3} tags</span>}
       </div>
-    </Card>
+    </VisualCard.Root>
   );
 };

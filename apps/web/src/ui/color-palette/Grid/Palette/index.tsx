@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useState } from "react";
 import { useColorPalettes } from "../../../../context/colorPalettes.context";
 import { EditPalette } from "./EditPalette";
+import * as VisualCard from "../../../../components/VisualCard";
 
 export type ColorPaletteProps = ColorPalette;
 
@@ -17,36 +18,24 @@ export const ColorPaletteCard = ({
 }: ColorPaletteProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { editColorPalette } = useColorPalettes();
+  const { editColorPalette, deleteColorPalette } = useColorPalettes();
 
   return (
-    <Card className={styles.card}>
-      <div className={styles.colorsContainer}>
-        {[...colors].map((color, i) => (
-          <div
-            key={`${color.id}-${color}-${i}`}
-            style={{
-              backgroundColor: color.color,
-            }}
-            className={styles.color}
-          ></div>
-        ))}
-      </div>
-      <div className={styles.textContainer}>
-        <div className={styles.nameContainer}>
-          <h3>{name}</h3>
+    <>
+    <VisualCard.Root>
+      <VisualCard.Head>
+        <div className={styles.colorsContainer}>
+          {[...colors].map((color, i) => (
+            <div
+              key={`${color.id}-${color}-${i}`}
+              style={{
+                backgroundColor: color.color,
+              }}
+              className={styles.color}
+            ></div>
+          ))}
         </div>
-        <span>{colors.length} colors</span>
-        <p>{description}</p>
-      </div>
-      <div className={styles.tags}>
-        <div className={styles.tagContainer}>
-          {tags
-            ?.slice(0, 2)
-            .map((tag, i) => <Tag className={styles.tag} key={`${tag}-${i}`}>{tag}</Tag>)}
-        </div>
-      </div>
-      <div className={styles.editButtonContainer}>
+        <div className={styles.editButtonContainer}>
         <EditPalette
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -60,7 +49,20 @@ export const ColorPaletteCard = ({
             tags,
           }}
         />
+        </div>
+      </VisualCard.Head>
+      <VisualCard.Content name={name} onDelete={() => deleteColorPalette(Number(id))} />
+      <VisualCard.Subtitle>
+      <div className={styles.textContainer}>
+        <span>{colors.length} {colors.length > 1 ? "colors" : "color"}</span>
+        <p>{description}</p>
       </div>
-    </Card>
+      </VisualCard.Subtitle>
+      <div className={styles.tags}>
+        <VisualCard.Tags tags={tags?.slice(0, 3)} />
+        {tags.length > 3 && <span>+ {tags.length - 3} tags</span>}
+      </div>
+    </VisualCard.Root>
+    </>
   );
 };
