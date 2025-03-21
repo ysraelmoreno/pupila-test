@@ -3,7 +3,7 @@ export interface VisualReference {
   description: string;
   tags: string[];
   url: string;
-  groupId?: string;
+  group?: string;
   id: number;
 }
 

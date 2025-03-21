@@ -1,0 +1,36 @@
+.colors {
+  display: flex;
+  height: 100px;
+  gap: 15px;
+}
+
+.colorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 100%;
+
+  input {
+    width: 60px;
+  }
+}
+
+.singleColor {
+  flex: 1;
+}
+
+.color {
+  height: 50px;
+  margin-top: 10px;
+}
+
+.colorPickerContainer {
+  position: relative;
+}
+
+.colorSelectorContainer {
+  position: absolute;
+  top: calc(50% + 5px);
+  left: 20px;
+  z-index: 100;
+}

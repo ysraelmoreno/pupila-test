@@ -1,9 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   Overlay as DialogOverlay,
   Trigger as DialogTrigger,
   Content as DialogContent,
 } from "@radix-ui/react-dialog";
+import { Variant } from "../interfaces/styles.interface";
+import getColorHelper from "../button/helpers/getColor";
+
+export interface TriggerProps {
+  variant: Variant;
+}
 
 export const Overlay = styled(DialogOverlay)`
   background-color: rgba(0, 0, 0, 0.2);
@@ -24,7 +30,7 @@ export const Content = styled(DialogContent)`
   justify-content: center;
 `;
 
-export const Trigger = styled(DialogTrigger)`
+export const Trigger = styled(DialogTrigger)<TriggerProps>`
   padding: 5px 20px;
   color: var(--background);
   background-color: var(--foreground);
@@ -33,4 +39,14 @@ export const Trigger = styled(DialogTrigger)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${({ variant }) =>
+    variant &&
+    css`
+      ${getColorHelper(variant, "normal")};
+
+      &:hover {
+        ${getColorHelper(variant, "hover")};
+      }
+    `}
 `;

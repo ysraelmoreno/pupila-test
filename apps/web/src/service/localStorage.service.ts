@@ -4,7 +4,11 @@ class LocalStorageService {
   }
 
   get(key: string) {
-    return JSON.parse(localStorage.getItem(key) ?? "");
+    const data = localStorage.getItem(key);
+
+    if (!data) return [];
+
+    return JSON.parse(data);
   }
 }
 

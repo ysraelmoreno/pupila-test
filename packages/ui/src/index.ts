@@ -5,3 +5,5 @@ export * from "./modal";
 export * from "./card";
 export * from "./textarea";
 export * from "./tag";
+export * from "./select";
+export * from "./interfaces/styles.interface";

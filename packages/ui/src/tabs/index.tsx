@@ -7,7 +7,6 @@ import {
   TabsProps,
   TabsContentProps,
 } from "@radix-ui/react-tabs";
-import { TabsProvider } from "./context/tabs.context";
 import { TabsRootContainer, TabsTrigger } from "./styles";
 
 const Root = ({
@@ -17,20 +16,18 @@ const Root = ({
   ...props
 }: PropsWithChildren<TabsProps>) => {
   return (
-    <TabsProvider defaultTab={defaultValue}>
-      <TabsRootContainer
-        orientation={orientation}
-        defaultValue={defaultValue}
-        {...props}
-      >
-        {children}
-      </TabsRootContainer>
-    </TabsProvider>
+    <TabsRootContainer
+      orientation={orientation}
+      defaultValue={defaultValue}
+      {...props}
+    >
+      {children}
+    </TabsRootContainer>
   );
 };
 
-const List = ({ children }: PropsWithChildren) => {
-  return <TabsList>{children}</TabsList>;
+const List = ({ children, ...props }: PropsWithChildren) => {
+  return <TabsList {...props}>{children}</TabsList>;
 };
 
 const Trigger = ({

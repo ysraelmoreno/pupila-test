@@ -5,10 +5,8 @@ import {
   VisualReference,
 } from "../../../../interface/visualReference.interface";
 import styles from "./styles.module.scss";
-import visualReferencesService from "../../../../service/api/visualReferences.service";
-import { useSWRConfig } from "swr";
 import { useVisualReferences } from "../../../../context/visualReference.context";
-import { AddModal } from "../../AddModal";
+import AddModal from "../../AddModal";
 import { ToolsProvider } from "../../../../context/tools.context";
 
 export interface ReferenceProps extends VisualReference {
@@ -22,11 +20,11 @@ export const Reference = ({
   tags,
   url,
   id,
-  groupId,
+  group,
   groups = [],
   ...props
 }: ReferenceProps) => {
-  const { deleteReference } = useVisualReferences();
+  const { deleteReference, updateReference } = useVisualReferences();
 
   return (
     <Card className={styles.card} {...props}>
@@ -40,9 +38,12 @@ export const Reference = ({
               defaultName={name}
               defaultTags={tags}
               defaultUrl={url}
+              defaultGroup={group}
               defaultId={id}
               groups={groups}
-              onActionClick={(reference: VisualReference) => {}}
+              onActionClick={(reference: VisualReference) =>
+                updateReference(reference.id, reference)
+              }
             />
           </ToolsProvider>
         </div>
@@ -61,10 +62,11 @@ export const Reference = ({
       <p>{description}</p>
       <div className={styles.tags}>
         {tags
-          ?.slice(0, 4)
+          ?.slice(0, 3)
           .map((tag) => (
             <Tag key={`tag-${tag}-${Math.random() * 1000}`}>{tag}</Tag>
           ))}
+        {tags.length > 3 && <span>+ {tags.length - 3} tags</span>}
       </div>
     </Card>
   );

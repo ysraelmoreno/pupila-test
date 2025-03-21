@@ -2,10 +2,12 @@ import { PropsWithChildren } from "react";
 import { Group } from "../../interface/visualReference.interface";
 import { Tabs } from "@brand-zone/ui";
 import styles from "./styles.module.scss";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 export interface CardsListProps {
   groups: Group[];
   children: React.ReactNode[];
+  onDeleteGroup: (id: string) => void;
 }
 
 /**
@@ -16,16 +18,20 @@ export interface CardsListProps {
 export const CardsList = ({
   children,
   groups,
+  onDeleteGroup,
 }: PropsWithChildren<CardsListProps>) => {
   return (
     <div className={styles.screen}>
       <Tabs.Root defaultValue="all">
-        <Tabs.List>
-          <Tabs.Trigger value="all">All</Tabs.Trigger>
+        <Tabs.List className={styles.tabsList}>
+          {groups.length > 0 && <Tabs.Trigger value="all">All</Tabs.Trigger>}
           {groups.map((group, i) => (
-            <Tabs.Trigger key={group.id} value={String(i)}>
+            <>
+            <Tabs.Trigger className={styles.trigger} key={group.id} value={String(i)}>
               {group.name}
             </Tabs.Trigger>
+              <TrashIcon onClick={() => onDeleteGroup(group.id)} />
+            </> 
           ))}
         </Tabs.List>
         <Tabs.Content value="all">{children[0]}</Tabs.Content>

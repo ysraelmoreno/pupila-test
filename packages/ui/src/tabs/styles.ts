@@ -9,6 +9,7 @@ export const TabsTrigger = styled(Trigger)`
   border: none;
   border-bottom: 4px solid var(--foreground);
   padding: 10px 15px;
+  opacity: 1;
 
   & + & {
     margin-left: 10px;

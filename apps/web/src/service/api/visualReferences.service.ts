@@ -17,6 +17,22 @@ class VisualReferenceServices {
     return this.createVisualRefencesBasePayload(references);
   }
 
+  updateReference(id: number, reference: VisualReference) {
+    const { references } = this.getReferences();
+
+    const referenceToBeUpdated = references.find((ref) => ref.id === id);
+
+    if (!referenceToBeUpdated) throw new Error("Reference doesn't exists");
+
+    const index = references.findIndex((ref) => ref.id === id);
+
+    references[index] = reference;
+
+    localStorageService.add("visualReferences", references);
+
+    return references;
+  }
+
   addReference(reference: VisualReference) {
     const { references } = this.getReferences();
 

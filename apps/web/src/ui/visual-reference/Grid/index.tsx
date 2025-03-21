@@ -1,24 +1,22 @@
 "use client";
 import { useVisualReferences } from "../../../context/visualReference.context";
 import { VisualReferencesList } from "./List";
-import { Tabs } from "@brand-zone/ui";
 import { CardsList } from "../../../components/CardsList";
 
 export const VisualReferenceGrid = () => {
-  const { references, groups } = useVisualReferences();
+  const { references, groups, deleteGroup } = useVisualReferences();
 
   return (
-    <CardsList groups={groups}>
+    <CardsList groups={groups} onDeleteGroup={deleteGroup}>
       <VisualReferencesList groups={groups} references={references} />
-      {groups?.map((group) => (
-        <Tabs.Content key={group.id} value={group.id}>
-          <VisualReferencesList
-            groups={groups}
-            references={references?.filter(
-              (reference) => Number(reference.groupId) === Number(group.id)
-            )}
-          />
-        </Tabs.Content>
+      {...groups?.map((group, i) => (
+        <VisualReferencesList
+          key={i}
+          groups={groups}
+          references={references?.filter(
+            (reference) => reference.group === group.name
+          )}
+        />
       ))}
     </CardsList>
   );

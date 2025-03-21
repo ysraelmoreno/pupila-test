@@ -1,0 +1,36 @@
+.baseFiltersContainers {
+  height: 0;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+.isFiltersContainersOpen {
+  height: auto;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  font-size: 11px;
+  opacity: 0.5;
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.isSelected {
+  opacity: 1;
+}

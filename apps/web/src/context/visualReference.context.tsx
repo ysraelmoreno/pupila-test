@@ -8,6 +8,7 @@ import {
 } from "react";
 import { Group, VisualReference } from "../interface/visualReference.interface";
 import visualReferencesService from "../service/api/visualReferences.service";
+import groupsService from "../service/api/groups.service";
 
 export interface CurrentFilters {
   tags: string[];
@@ -21,7 +22,10 @@ export interface IVisualReferenceContext {
   deleteReference: (id: number) => void;
   availableFilters: string[];
   currentFilters: CurrentFilters;
+  updateReference: (id: number, reference: VisualReference) => void;
   setCurrentFilters: (id: CurrentFilters) => void;
+  createGroup: (newGroup: Omit<Group, "id">) => void;
+  deleteGroup: (id: string) => void;
 }
 
 const VisualReferenceContext = createContext<IVisualReferenceContext>(
@@ -46,16 +50,30 @@ export const VisualReferenceProvider = ({ children }: PropsWithChildren) => {
 
   const availableFilters = useMemo(() => {
     const tagsSet = [
-      ...new Set(references.flatMap((reference) => reference.tags)),
+      ...new Set(references?.flatMap((reference) => reference.tags)),
     ];
 
     return tagsSet;
   }, [references]);
 
+  const updateReference = async (
+    id: number,
+    updatedReference: VisualReference
+  ) => {
+    const referencesUpdated = visualReferencesService.updateReference(
+      id,
+      updatedReference
+    );
+
+    setReferences(referencesUpdated);
+
+    return referencesUpdated;
+  };
+
   const addReference = async (reference: VisualReference) => {
     const newReference = visualReferencesService.addReference(reference);
 
-    setReferences(newReference);
+    setReferences([...newReference]);
   };
 
   const deleteReference = async (id: number) => {
@@ -64,10 +82,22 @@ export const VisualReferenceProvider = ({ children }: PropsWithChildren) => {
     setReferences([...updatedReferences]);
   };
 
+  const createGroup = (group: Omit<Group, "id">) => {
+    const groups = groupsService.createGroup(group, "visualReferenceGroups");
+
+    setGroups(groups);
+  };
+
+  const deleteGroup = (id: string) => {
+    groupsService.deleteGroup("visualReferenceGroups", id);
+
+    setGroups(groups.filter((group) => group.id !== id));
+  };
+
   const referencesFormatted = useMemo(() => {
     const filteredByTags: VisualReference[] = references
       .map((reference) => {
-        const containAnyTag = reference.tags.some((tag) =>
+        const containAnyTag = reference?.tags?.some((tag) =>
           currentFilters?.tags?.length > 0
             ? currentFilters.tags.includes(tag)
             : true
@@ -87,8 +117,12 @@ export const VisualReferenceProvider = ({ children }: PropsWithChildren) => {
       }
 
       return (
-        reference?.name.includes(currentFilters?.search) ||
-        reference?.description.includes(currentFilters?.search)
+        reference?.name
+          ?.toLowerCase()
+          .includes(currentFilters?.search.toLowerCase()) ||
+        reference?.description
+          ?.toLowerCase()
+          .includes(currentFilters?.search?.toLowerCase())
       );
     });
 
@@ -104,7 +138,10 @@ export const VisualReferenceProvider = ({ children }: PropsWithChildren) => {
         addReference,
         availableFilters,
         setCurrentFilters,
+        updateReference,
         currentFilters,
+        createGroup,
+        deleteGroup,
       }}
     >
       {children}

@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "radix-ui";
 import { PropsWithChildren } from "react";
 import { Content, Overlay, Trigger } from "./styles";
+import { Variant } from "../interfaces/styles.interface";
 
 export interface ModalProps {
   trigger: React.ReactNode;
@@ -10,6 +11,7 @@ export interface ModalProps {
   isOpen?: boolean;
   onTriggerClick?: () => void;
   onClose?: () => void;
+  triggerVariant?: Variant;
 }
 
 export const Modal = ({
@@ -20,10 +22,13 @@ export const Modal = ({
   isOpen,
   onTriggerClick,
   onClose,
+  triggerVariant = "primary",
 }: PropsWithChildren<ModalProps>) => {
   return (
     <Dialog.Root open={isOpen}>
-      <Trigger onClick={onTriggerClick}>{trigger}</Trigger>
+      <Trigger variant={triggerVariant} onClick={onTriggerClick}>
+        {trigger}
+      </Trigger>
       <Dialog.Portal>
         <VisuallyHidden.Root asChild>
           <Dialog.Title>{title}</Dialog.Title>

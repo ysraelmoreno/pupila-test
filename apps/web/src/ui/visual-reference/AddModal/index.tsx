@@ -1,6 +1,5 @@
 "use client";
-import { Button, Card, Input, Modal, Tag, TextArea } from "@brand-zone/ui";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { Button, Card, Input, Select, Tag, TextArea } from "@brand-zone/ui";
 import styles from "./styles.module.scss";
 import { useMemo, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -10,6 +9,7 @@ import {
   Group,
   VisualReference,
 } from "../../../interface/visualReference.interface";
+import AddItemModal from "../../../components/Tools/AddItemModal";
 
 export interface AddModalProps {
   trigger: React.ReactNode;
@@ -18,17 +18,19 @@ export interface AddModalProps {
   defaultDescription?: string;
   defaultTags?: string[];
   defaultUrl?: string;
+  defaultGroup?: string;
   defaultId?: number;
   onTriggerClick?: () => void;
   groups?: Group[];
 }
 
-export const AddModal = ({
+const AddModal = ({
   defaultDescription = "",
   defaultName = "",
   defaultTags = [],
   defaultUrl = "",
   defaultId = Math.random() * 100,
+  defaultGroup = "",
   trigger,
   groups = [],
   onActionClick,
@@ -39,6 +41,7 @@ export const AddModal = ({
   const [tag, setTag] = useState("");
   const [tags, setTags] = useState<string[]>(defaultTags);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState(defaultGroup);
 
   const tagInputRef = useRef<HTMLInputElement>(null);
 
@@ -55,11 +58,12 @@ export const AddModal = ({
       description,
       tags,
       url,
+      group: selectedGroup,
     };
-  }, [name, description, tags, url, defaultId]);
+  }, [name, description, tags, url, defaultId, selectedGroup]);
 
   return (
-    <Modal
+    <AddItemModal
       isOpen={isOpen}
       onTriggerClick={() => {
         if (onTriggerClick) {
@@ -84,6 +88,14 @@ export const AddModal = ({
             onChange={(event) => {
               setName(event.target.value);
             }}
+          />
+          <Select
+            placeholder="Select a group"
+            defaultValue={defaultGroup}
+            options={groups.map((group) => group.name)}
+            onOptionSelect={(selectedOption) =>
+              setSelectedGroup(selectedOption)
+            }
           />
         </div>
         <TextArea
@@ -145,6 +157,10 @@ export const AddModal = ({
           </Button>
         </div>
       </Card>
-    </Modal>
+    </AddItemModal>
   );
 };
+
+AddModal.displayName = "Tools_AddButton";
+
+export default AddModal;
