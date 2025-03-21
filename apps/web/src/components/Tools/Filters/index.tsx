@@ -37,9 +37,10 @@ export const Filters = ({
     });
   };
 
-  return (
+  return isOpen && (
     <div
       className={`${styles.baseFiltersContainers} ${isOpen ? styles.isFiltersContainersOpen : ""}`}
+      data-testid="filters-container"
     >
       {availableFilters?.map((filter) => (
         <Tag

@@ -18,8 +18,10 @@ const Utilities = ({
       <Button
         variant="ghost"
         onClick={onFiltersClick}
+        className={styles.filtersTrigger}
         disabled={isFiltersDisabled}
       >
+        Filters
         <SliderIcon />
       </Button>
       {children}

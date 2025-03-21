@@ -29,10 +29,12 @@ export const ColorPalettesHeader = () => {
       }}>
         <Utilities onFiltersClick={() => setIsFiltersOpen(!isFiltersOpen)} isFiltersDisabled={!availableFilters?.length}>
           <CreateGroupModal
-            trigger={<div className={styles.groupsTrigger}>
-            Create a group
-            <ArchiveIcon />
-          </div>}
+            trigger={
+              <div className={styles.groupsTrigger}>
+                Create a group
+                <ArchiveIcon />
+              </div>
+            }
             title="Create a group name"
             triggerVariant="ghost"
             onActionClick={(group) => {
