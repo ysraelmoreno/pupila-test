@@ -1,10 +1,7 @@
-export interface VisualReference {
-  name: string;
-  description: string;
-  tags: string[];
+import { Base } from "./base.interface";
+
+export interface VisualReference extends Base {
   url: string;
-  group?: string;
-  id: number;
 }
 
 export interface Group {

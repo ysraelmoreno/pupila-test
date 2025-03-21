@@ -10,6 +10,7 @@ import {
   VisualReference,
 } from "../../../interface/visualReference.interface";
 import AddItemModal from "../../../components/Tools/AddItemModal";
+import { CreateGroupModal } from "../../../components/CreateGroupModal";
 
 export interface AddModalProps {
   trigger: React.ReactNode;
@@ -98,6 +99,7 @@ const AddModal = ({
             }
           />
         </div>
+
         <TextArea
           placeholder="Add a description"
           defaultValue={defaultDescription}

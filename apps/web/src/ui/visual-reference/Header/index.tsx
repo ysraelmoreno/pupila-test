@@ -8,6 +8,7 @@ import AddModal from "../AddModal";
 import { VisualReference } from "../../../interface/visualReference.interface";
 import { Filters } from "../../../components/Tools/Filters";
 import { Tools } from "../../../components/Tools";
+import styles from "./styles.module.scss";
 
 export const VisualReferenceHeader = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -52,7 +53,12 @@ export const VisualReferenceHeader = () => {
         isFiltersDisabled={!availableFilters.length}
       >
         <CreateGroupModal
-          trigger={<ArchiveIcon />}
+          trigger={
+            <div className={styles.groupsTrigger}>
+              Create a group
+              <ArchiveIcon />
+            </div>
+          }
           title="Create a group name"
           triggerVariant="ghost"
           onActionClick={(group) => createGroup(group)}

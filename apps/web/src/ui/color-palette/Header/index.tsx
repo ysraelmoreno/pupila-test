@@ -8,6 +8,7 @@ import AddItemModal from "../../../components/Tools/AddItemModal";
 import { useColorPalettes } from "../../../context/colorPalettes.context";
 import { CreateColorPaletteModalContent } from "../CreateColorModal";
 import { useDebouncedCallback } from "use-debounce";
+import styles from "./styles.module.scss";
 
 export const ColorPalettesHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,10 @@ export const ColorPalettesHeader = () => {
       }}>
         <Utilities onFiltersClick={() => setIsFiltersOpen(!isFiltersOpen)} isFiltersDisabled={!availableFilters?.length}>
           <CreateGroupModal
-            trigger={<ArchiveIcon />}
+            trigger={<div className={styles.groupsTrigger}>
+            Create a group
+            <ArchiveIcon />
+          </div>}
             title="Create a group name"
             triggerVariant="ghost"
             onActionClick={(group) => {

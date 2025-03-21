@@ -1,13 +1,10 @@
+import { Base } from "./base.interface";
+
 export interface Color {
   color: string;
   id: number;
 }
 
-export interface ColorPalette {
+export interface ColorPalette extends Base {
   colors: Color[];
-  name: string;
-  description: string;
-  id: number;
-  group: string;
-  tags: string[];
 }
