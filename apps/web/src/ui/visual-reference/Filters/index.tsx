@@ -1,16 +1,12 @@
-import { Button, Tag } from "@brand-zone/ui";
+import { Tag } from "@brand-zone/ui";
 import styles from "./styles.module.scss";
-import {
-  CurrentFilters,
-  useVisualReferences,
-} from "../../../context/visualReference.context";
+import { useVisualReferences } from "../../../context/visualReference.context";
 
 export interface FiltersProps {
   isOpen: boolean;
-  onFilter: (currentFilters: CurrentFilters) => void;
 }
 
-export const Filters = ({ isOpen, onFilter }: FiltersProps) => {
+export const Filters = ({ isOpen }: FiltersProps) => {
   const { availableFilters, currentFilters, setCurrentFilters } =
     useVisualReferences();
 
@@ -37,20 +33,22 @@ export const Filters = ({ isOpen, onFilter }: FiltersProps) => {
   };
 
   return (
-    <div
-      className={`${styles.baseFiltersContainers} ${isOpen ? styles.isFiltersContainersOpen : ""}`}
-    >
-      {availableFilters?.map((filter) => (
-        <Tag
-          key={filter}
-          onClick={() => {
-            handleAddtag(filter);
-          }}
-          className={`${styles.tag} ${currentFilters.tags?.includes(filter) ? styles.isSelected : ""}`}
-        >
-          {filter}
-        </Tag>
-      ))}
-    </div>
+    isOpen && (
+      <div
+        className={`${styles.baseFiltersContainers} ${isOpen ? styles.isFiltersContainersOpen : ""}`}
+      >
+        {availableFilters?.map((filter) => (
+          <Tag
+            key={filter}
+            onClick={() => {
+              handleAddtag(filter);
+            }}
+            className={`${styles.tag} ${currentFilters.tags?.includes(filter) ? styles.isSelected : ""}`}
+          >
+            {filter}
+          </Tag>
+        ))}
+      </div>
+    )
   );
 };

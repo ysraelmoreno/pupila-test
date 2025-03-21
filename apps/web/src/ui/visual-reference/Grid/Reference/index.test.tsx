@@ -1,22 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Reference } from ".";
 import { VisualReferenceContext } from "../../../../context/visualReference.context";
-
-const BASE_MOCK_CONTEXT_VALUE = {
-  addReference: jest.fn(),
-  deleteReference: jest.fn(),
-  updateReference: jest.fn(),
-  groups: [],
-  createGroup: jest.fn(),
-  deleteGroup: jest.fn(),
-  availableFilters: [],
-  currentFilters: {
-    tags: [],
-    search: "",
-  },
-  references: [],
-  setCurrentFilters: jest.fn(),
-};
+import { BASE_MOCK_CONTEXT_VALUE } from "../../../../mocks/visualReferences.mock";
 
 describe("Reference", () => {
   beforeEach(() => {

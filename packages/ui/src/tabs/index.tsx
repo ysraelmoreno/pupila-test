@@ -1,5 +1,5 @@
 "use client";
-import React, { PropsWithChildren } from "react";
+import React, { AllHTMLAttributes, PropsWithChildren } from "react";
 import {
   List as TabsList,
   Content as TabsContent,
@@ -8,6 +8,8 @@ import {
   TabsContentProps,
 } from "@radix-ui/react-tabs";
 import { TabsRootContainer, TabsTrigger } from "./styles";
+
+export interface TabsListProps extends AllHTMLAttributes<HTMLDivElement> {}
 
 const Root = ({
   children,
@@ -26,7 +28,7 @@ const Root = ({
   );
 };
 
-const List = ({ children, ...props }: PropsWithChildren) => {
+const List = ({ children, ...props }: PropsWithChildren<TabsListProps>) => {
   return <TabsList {...props}>{children}</TabsList>;
 };
 
