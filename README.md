@@ -52,3 +52,11 @@ Todas as funcionalidades base requisitadas foram desenvolvidas.
 - Criação e gerenciamento de tags
 - Filtragem de conteúdo por grupo ou tag
 - Pesquisa por nome, comentário ou tag
+
+### Arquitetura
+
+A arquitetura do projeto pode ser encontrada no arquivo [BrandStudioMVP.drawio](./docs/BrandStudioMVP.drawio). Para ser visualizada, basta abrir o arquivo no [Draw.io](https://draw.io).
+
+#### Diagrama de componentes
+
+![Diagrama de componentes](./docs/diagrama-de-componentes.png)
