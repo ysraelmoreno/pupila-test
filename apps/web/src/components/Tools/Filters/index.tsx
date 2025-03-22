@@ -37,23 +37,25 @@ export const Filters = ({
     });
   };
 
-  return isOpen && (
-    <div
-      className={`${styles.baseFiltersContainers} ${isOpen ? styles.isFiltersContainersOpen : ""}`}
-      data-testid="filters-container"
-    >
-      {availableFilters?.map((filter) => (
-        <Tag
-          key={filter}
-          onClick={() => {
-            handleAddtag(filter);
-          }}
-          className={`${styles.tag} ${currentFilters.tags?.includes(filter) ? styles.isSelected : ""}`}
-        >
-          {filter}
-        </Tag>
-      ))}
-    </div>
+  return (
+    isOpen && (
+      <div
+        className={`${styles.baseFiltersContainers} ${isOpen ? styles.isFiltersContainersOpen : ""}`}
+        data-testid="filters-container"
+      >
+        {availableFilters?.map((filter) => (
+          <Tag
+            key={filter}
+            onClick={() => {
+              handleAddtag(filter);
+            }}
+            className={`${styles.tag} ${currentFilters.tags?.includes(filter) ? styles.isSelected : ""}`}
+          >
+            {filter}
+          </Tag>
+        ))}
+      </div>
+    )
   );
 };
 

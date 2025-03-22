@@ -13,35 +13,28 @@ import styles from "./styles.module.scss";
 export const ColorPalettesHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-  const { createGroup, handlePaletteCreation, availableFilters, currentFilters, setCurrentFilters } = useColorPalettes();
+  const {
+    createGroup,
+    handlePaletteCreation,
+    availableFilters,
+    currentFilters,
+    setCurrentFilters,
+  } = useColorPalettes();
 
   const debounced = useDebouncedCallback((value: string) => {
     setCurrentFilters({
       ...currentFilters,
       search: value,
-    })
+    });
   }, 500);
 
   return (
     <>
-      <Tools onInputChange={(value) => {
-        debounced(value)
-      }}>
-        <Utilities onFiltersClick={() => setIsFiltersOpen(!isFiltersOpen)} isFiltersDisabled={!availableFilters?.length}>
-          <CreateGroupModal
-            trigger={
-              <div className={styles.groupsTrigger}>
-                Create a group
-                <ArchiveIcon />
-              </div>
-            }
-            title="Create a group name"
-            triggerVariant="ghost"
-            onActionClick={(group) => {
-              createGroup(group.name);
-            }}
-          />
-        </Utilities>
+      <Tools
+        onInputChange={(value) => {
+          debounced(value);
+        }}
+      >
         <AddItemModal
           isOpen={isOpen}
           trigger={<PlusIcon />}
@@ -57,6 +50,24 @@ export const ColorPalettesHeader = () => {
             }
           />
         </AddItemModal>
+        <Utilities
+          onFiltersClick={() => setIsFiltersOpen(!isFiltersOpen)}
+          isFiltersDisabled={!availableFilters?.length}
+        >
+          <CreateGroupModal
+            trigger={
+              <div className={styles.groupsTrigger}>
+                Create a group
+                <ArchiveIcon />
+              </div>
+            }
+            title="Create a group name"
+            triggerVariant="ghost"
+            onActionClick={(group) => {
+              createGroup(group.name);
+            }}
+          />
+        </Utilities>
         <Filters
           isOpen={isFiltersOpen}
           availableFilters={availableFilters}

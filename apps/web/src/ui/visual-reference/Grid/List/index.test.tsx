@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { VisualReferencesList } from ".";
 
 describe("VisualReferencesList", () => {
@@ -12,7 +12,7 @@ describe("VisualReferencesList", () => {
     } as Response);
   });
 
-  it("should render the list of visual references", () => {
+  it("should render the list of visual references", async () => {
     render(
       <VisualReferencesList
         references={[
@@ -28,5 +28,8 @@ describe("VisualReferencesList", () => {
         groups={[]}
       />
     );
+
+    expect(screen.getByText("Mustang")).toBeInTheDocument();
+    expect(screen.getByText("A grey mustang")).toBeInTheDocument();
   });
 });

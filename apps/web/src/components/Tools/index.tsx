@@ -20,7 +20,7 @@ export const Tools = ({ onInputChange, children }: ToolsProps) => {
       <div className={styles.toolsContainer}>
         <div className={styles.inputContainer}>
           <Input
-            placeholder="Search a image"
+            placeholder="Search a color palette"
             ref={inputRef}
             onChange={(event) => {
               onInputChange(event.target.value);

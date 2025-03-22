@@ -20,6 +20,7 @@ const Utilities = ({
         onClick={onFiltersClick}
         className={styles.filtersTrigger}
         disabled={isFiltersDisabled}
+        data-testid="filters-trigger"
       >
         Filters
         <SliderIcon />
