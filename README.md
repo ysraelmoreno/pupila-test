@@ -1,84 +1,54 @@
-# Turborepo starter
+# Brand Zone MVP
 
-This Turborepo starter is maintained by the Turborepo core team.
+Essa é um protótipo de uma aplicação de gerenciamento de marca. Construído utilizando NextJS, styled-components e Turborepo.
 
-## Using this example
+## Como executar a aplicação
 
-Run the following command:
+Execute o comando\* abaixo para instalar as dependências:
 
 ```sh
-npx create-turbo@latest
+pnpm install
 ```
 
-## What's inside?
+Obs.: Tenha instalado o [PNPM](https://pnpm.io/pt/).
 
-This Turborepo includes the following packages/apps:
+Após a instalação das dependências, execute o comando abaixo para iniciar a aplicação:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```sh
 pnpm dev
 ```
 
-### Remote Caching
+A aplicação estará disponível no endereço [http://localhost:3000](http://localhost:3000) para visualização.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+## Por que Turborepo?
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Turborepo é uma ferramenta que facilita o gerenciamento de um monorepo. Ela permite que você execute tarefas em todos os pacotes do monorepo com um único comando. Facilitando o processo de gerenciamento de dependências e de build. Possibilitando o desenvolvimento em paralelo de pacotes externos, auxiliando a escalabilidade de projetos como um Design System, ou até mesmo uma aplicação completa separada por módulos.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+### O que foi desenvolvido?
 
-```
-cd my-turborepo
-npx turbo login
-```
+Todas as funcionalidades base requisitadas foram desenvolvidas.
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+#### Módulo de Imagens:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- Visualização de imagens em grid
+- Adição de novas imagens (via URL ou API simulada)
+- Organização em grupos personalizados
+- Atribuição de tags às imagens
+- Adição e edição de comentários em cada imagem
+- Exclusão de imagens
 
-```
-npx turbo link
-```
+#### Módulo de Paleta de Cores:
 
-## Useful Links
+- Visualização de paletas de cores salvas
+- Criação de novas paletas (conjunto de cores)
+- Organização em grupos personalizados
+- Atribuição de tags às paletas
+- Adição e edição de comentários em cada paleta
+- Exclusão de paletas
 
-Learn more about the power of Turborepo:
+#### Organização:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- Criação e gerenciamento de grupos
+- Criação e gerenciamento de tags
+- Filtragem de conteúdo por grupo ou tag
+- Pesquisa por nome, comentário ou tag
