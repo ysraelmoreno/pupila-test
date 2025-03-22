@@ -59,4 +59,8 @@ A arquitetura do projeto pode ser encontrada no arquivo [BrandStudioMVP.drawio](
 
 #### Diagrama de componentes
 
-![Diagrama de componentes](./docs/diagrama-de-componentes.png)
+![Diagrama de componentes](./docs/diagrama-de-components.png)
+
+#### Arquitetura principal
+
+![Arquitetura principal](./docs/arquitetura-principal.png)
